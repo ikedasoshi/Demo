@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p th:text="${msg}">please weit...</p>
+    <form method="POST" action="/formsample">
+        <input type="text" name="text1" th:value="${value}">
+        <input type="submit" value="Click">
+    </form>
+</body>
+</html>
