@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カウンターアプリのテスト</title>
+</head>
+<body>
+    <div id="disp_count">0</div>
+    <input type="button" value="ここをクリック" id="btn_count_up" />
+    <div id="result"></div>
+
+    <script>
+
+        // オブジェクトと変数の準備
+        let count_disp = document.getElementById("disp_count");  
+        let count_up_btn = document.getElementById("btn_count_up");
+        let count_value = 0;
+        let endtest;
+
+        // カウントアップボタンクリック処理
+        count_up_btn.addEventListener('click', function(){
+            //5秒で結果を表示
+            setTimeout(endtest, 5000);
+            
+            count_value += 1;
+            count_disp.innerHTML = count_value;
+        });
+
+        // カウントアップボタンのマウスダウン処理
+        count_up_btn.onmousedown = function() {
+            count_up_btn.style.backgroundColor = "#00FF00";
+        };
+        // カウントアップボタンのマウスアップ処理
+        count_up_btn.onmouseup = function() {
+            count_up_btn.style.backgroundColor = "";
+        };
+        //計測結果部分の処理
+        endtest = function() {
+                alert("計測終了！\n"
+                +"結果："+count_value+"連射");
+        }
+
+
+    </script>
+</body>
+</html>
