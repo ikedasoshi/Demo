@@ -15,4 +15,14 @@ public class IfSampleController {
         mav.addObject("falseVal", "Odd number");
         return mav;
     }
+
+    @RequestMapping("/thifsample/{id}")
+    public ModelAndView thifsample(@PathVariable int id, ModelAndView mav) {
+        mav.setViewName("chapter4/thifsample");
+        mav.addObject("id", id);
+        mav.addObject("check", id >= 0);
+        mav.addObject("trueVal", "Positive");
+        mav.addObject("falseVal", "Negative");
+        return mav;
+    }
 }
