@@ -10,6 +10,7 @@ public class DataObjectController {
     @RequestMapping("/dotest")
     public ModelAndView dotest(ModelAndView mav) {
         mav.setViewName("chapter4/dotest");
+        mav.addObject("title", "DataObject");
         mav.addObject("msg", "current data.");
         DataObject obj = new DataObject(123, "hanako", "hanako@flower");
         mav.addObject("object", obj);
