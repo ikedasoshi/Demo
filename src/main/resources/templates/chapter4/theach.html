@@ -1,0 +1,23 @@
+!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>MAIL</th>
+            <th>TEL</th>
+        </tr>
+        <tr th:each="obj:${data}">
+            <td th:text="${obj[0]}"></td>
+            <td th:text="${obj[1]}"></td>
+            <td th:text="${obj[2]}"></td>
+        </tr>
+    </table>
+</body>
+</html>

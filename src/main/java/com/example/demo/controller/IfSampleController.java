@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +35,17 @@ public class IfSampleController {
         m = m == 0 ? 12 : m;
         mav.addObject("month", m);
         mav.addObject("check", Math.floor(m / 3));
+        return mav;
+    }
+
+    @RequestMapping("/ththeach")
+    public ModelAndView theach(ModelAndView mav) {
+        mav.setViewName("chapter4/theach");
+        ArrayList<String[]> data = new ArrayList<String[]>();
+        data.add(new String[]{"taro","taro@yamada","090-999-999"});
+        data.add(new String[]{"hanako","hanako@flower","080-888-888"});
+        data.add(new String[]{"sachiko","sachiko@happy","080-888-888"});
+        mav.addObject("data", data);
         return mav;
     }
 }
