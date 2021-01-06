@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p th:text="|expression[ ${check} ]|"></p>
+    <table th:object="${data.get(__${check}__)}">
+        <tr><th>ID</th><td th:text="*{id}"></td></tr>
+        <tr><th>NAME</th><td th:text="*{name}"></td></tr>
+        <tr><th>MAIL</th><td th:text="*{value}"></td></tr>
+    </table>
+</body>
+</html>

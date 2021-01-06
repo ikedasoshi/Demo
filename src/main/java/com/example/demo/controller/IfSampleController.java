@@ -38,7 +38,7 @@ public class IfSampleController {
         return mav;
     }
 
-    @RequestMapping("/ththeach")
+    @RequestMapping("/theach")
     public ModelAndView theach(ModelAndView mav) {
         mav.setViewName("chapter4/theach");
         ArrayList<String[]> data = new ArrayList<String[]>();
