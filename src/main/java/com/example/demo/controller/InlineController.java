@@ -19,4 +19,11 @@ public class InlineController {
         mav.addObject("data", data);
         return mav;
     }
+
+    @RequestMapping("/jinlinetest/{tax}")
+    public ModelAndView jinlinetest(@PathVariable int tax, ModelAndView mav) {
+        mav.setViewName("chapter4/jinlinetest");
+        mav.addObject("tax", tax);
+        return mav;
+    }
 }
