@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {font-size: 18pt; font-weight: bold; color: gray;}
+        body {font-size: 13pt; color: gray; margin: 5px 25px;}
+    </style>
+    <style th:include="part :: frag_style"></style>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <div th:include="part :: frag_body">
+        <p>this is original comment.</p>
+    </div>
+</body>
+</html>
