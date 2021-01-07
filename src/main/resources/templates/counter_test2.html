@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カウンターアプリのテスト</title>
+    <script th:inline="javascript">
+        let count_value = 0;
+
+        count_up_btn = function() {
+            setTimeout(action, 5000);
+
+            count_value += 1;
+            document.getElementById("disp_count").innerHTML = count_value;
+        }
+
+        function action() {
+            var res = parseInt(count_value * /*[[${mag}]]*/);
+            document.getElementById("result").innerHTML = "結果: " + res + "点";
+        };
+
+    </script>
+</head>
+<body>
+    <div id="disp_count">0</div>
+    <button onclick="count_up_btn()">ここをクリック</button>
+    <p id="result">ここに結果を表示</p>
+</body>
+</html>

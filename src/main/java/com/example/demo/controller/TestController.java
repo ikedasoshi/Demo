@@ -11,4 +11,19 @@ public class TestController {
         mav.setViewName("counter_test");
         return mav;
     }
+
+    @RequestMapping("/counter_test2/{mag}")
+    public ModelAndView countertest2(@PathVariable int mag, ModelAndView mav) {
+        mav.setViewName("counter_test2");
+        mav.addObject("mag", mag);
+        return mav;
+    }
+
+    @RequestMapping("/counter_test3/{mag}")
+    public ModelAndView countertest3(@PathVariable int mag, ModelAndView mav) {
+        mav.setViewName("counter_test3");
+        mav.addObject("mag", mag);
+        mav.addObject("msg", "1クリック" + mag + "点");
+        return mav;
+    }
 }
