@@ -11,8 +11,13 @@
         count_up_btn = function() {
             setTimeout(action, 5000);
 
-            if(switch_1 == true) {
+            if(switch_1) {
                 count_value += 1;
+                switch_1 = false;
+                setTimeout(
+                    function() {
+                        switch_1 = true;
+                    },1000);
             }
             document.getElementById("disp_count").innerHTML = count_value;
         }
@@ -23,6 +28,7 @@
         }
 
         function action() {
+            switch_1 = false;
             var res = parseInt(count_value * /*[[${mag}]]*/);
             document.getElementById("result").innerHTML = "結果: " + res + "点";
         };
