@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TestController {
-    @RequestMapping(value = "/counter_test")
+    @RequestMapping("/counter_test")
     public ModelAndView countertest(ModelAndView mav) {
         mav.setViewName("counter_test");
         return mav;
