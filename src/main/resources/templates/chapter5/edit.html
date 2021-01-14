@@ -12,11 +12,13 @@
         th {padding: 5px; color: white; background: darkgray;}
         td {padding: 5px; color: black; background: #f0f0f0;}
     </style>
+    <style th:include="part :: frag_style"></style>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Edit Page</h1>
     <table>
-        <form action="/mydatatest" method="post" th:oblect="${formModel}">
+        <form action="/edit" method="post" th:oblect="${formModel}">
+            <input type="hidden" name="id" th:value=":{id}">
             <tr>
                 <td><label for="name">名前</label></td>
                 <td><input type="text" name="name" th:value="*{name}" /></td>
