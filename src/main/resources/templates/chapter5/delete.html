@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit page</title>
+    <style>
+        h1 {font-size: 18pt; font-weight: bold; color: gray;}
+        body {font-size: 13pt; color: gray; margin: 5px 25px;}
+        pre {border: solid 3px #ddd; padding: 10px;}
+        tr {margin: 5px;}
+        th {padding: 5px; color: white; background: darkgray;}
+        td {padding: 5px; color: black; background: #f0f0f0;}
+    </style>
+</head>
+<body>
+    <h1 th:text="${title}">Delete Page</h1>
+    <table>
+        <form action="/delete" method="post" th:object="${formModel}">
+            <input type="hidden" name="id" th:value="*{id}" />
+            <tr>
+                <td><p th:text="|名前： *{name}|"></p></td>
+            </tr>
+            <tr>
+                <td><p th:text="|年齢： *{age}|"></p></td>
+            </tr>
+            <tr>
+                <td><p th:text="|メール： *{mail}|"></p></td>
+            </tr>
+            <tr>
+                <td><p th:text="|メモ： *{memo}|"></p></td>
+            </tr>
+            <tr><td></td><td><input type="submit" value="delete" /></td></tr>
+        </form>
+    </table>
+    <hr/>
+    <table>
+        <tr><th>ID</th><th>NAME</th></tr>
+        <tr th:each="obj : ${datalist}">
+            <td th:text="${obj.id}"></td>
+            <td th:text="${obj.name}"></td>
+        </tr>
+    </table>
+</body>
+</html>
