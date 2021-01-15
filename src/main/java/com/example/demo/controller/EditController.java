@@ -19,6 +19,8 @@ public class EditController {
     public ModelAndView edit(@ModelAttribute MyData mydata, @PathVariable int id, ModelAndView mav) {
         mav.setViewName("chapter5/edit");
         mav.addObject("title", "edit mydata.");
+        Iterable<MyData> list = repository.findAll();
+        mav.addObject("datalist", list);
         Optional<MyData> data = repository.findById((long)id);
         mav.addObject("formModel", data.get());
         return mav;
@@ -28,6 +30,6 @@ public class EditController {
     @Transactional(readOnly = false)
     public ModelAndView update(@ModelAttribute MyData mydata, ModelAndView mav) {
         repository.saveAndFlush(mydata);
-        return new ModelAndView("redirect:/edit");
+        return new ModelAndView("redirect:/mydatatest");
     }
 }

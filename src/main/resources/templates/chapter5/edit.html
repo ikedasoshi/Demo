@@ -12,10 +12,9 @@
         th {padding: 5px; color: white; background: darkgray;}
         td {padding: 5px; color: black; background: #f0f0f0;}
     </style>
-    <style th:include="part :: frag_style"></style>
 </head>
 <body>
-    <h1>Edit Page</h1>
+    <h1 th:text="${title}">Edit Page</h1>
     <table>
         <form action="/edit" method="post" th:object="${formModel}">
             <input type="hidden" name="id" th:value="*{id}" />
@@ -37,6 +36,14 @@
             </tr>
             <tr><td></td><td><input type="submit" /></td></tr>
         </form>
+    </table>
+    <hr/>
+    <table>
+        <tr><th>ID</th><th>NAME</th></tr>
+        <tr th:each="obj : ${datalist}">
+            <td th:text="${obj.id}"></td>
+            <td th:text="${obj.name}"></td>
+        </tr>
     </table>
 </body>
 </html>
