@@ -16,7 +16,7 @@
 <body>
     <h1>Hello World</h1>
     <table>
-        <form action="/mydatatest" method="post" th:oblect="${formModel}">
+        <form action="/mydatatest" method="post" th:object="${formModel}">
             <tr>
                 <td><label for="name">名前</label></td>
                 <td><input type="text" name="name" th:value="*{name}" /></td>

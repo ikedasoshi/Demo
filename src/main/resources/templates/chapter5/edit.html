@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>edit page</title>
     <style>
         h1 {font-size: 18pt; font-weight: bold; color: gray;}
         body {font-size: 13pt; color: gray; margin: 5px 25px;}
@@ -17,8 +17,8 @@
 <body>
     <h1>Edit Page</h1>
     <table>
-        <form action="/edit" method="post" th:oblect="${formModel}">
-            <input type="hidden" name="id" th:value=":{id}">
+        <form action="/edit" method="post" th:object="${formModel}">
+            <input type="hidden" name="id" th:value="*{id}" />
             <tr>
                 <td><label for="name">名前</label></td>
                 <td><input type="text" name="name" th:value="*{name}" /></td>
@@ -37,14 +37,6 @@
             </tr>
             <tr><td></td><td><input type="submit" /></td></tr>
         </form>
-    </table>
-    <hr/>
-    <table>
-        <tr><th>ID</th><th>NAME</th></tr>
-        <tr th:each="obj : ${datalist}">
-            <td th:text="${obj.id}"></td>
-            <td th:text="${obj.name}"></td>
-        </tr>
     </table>
 </body>
 </html>

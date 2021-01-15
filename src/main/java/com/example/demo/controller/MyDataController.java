@@ -56,4 +56,6 @@ public void init() {
         repository.saveAndFlush(mydata);
         return new ModelAndView("redirect:/mydatatest");
     }
+
+    
 }
