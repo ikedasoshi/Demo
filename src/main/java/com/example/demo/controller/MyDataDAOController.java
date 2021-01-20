@@ -25,5 +25,12 @@ public class MyDataDAOController {
 
     MyDataDAOImpl dao;
 
-    
+    @RequestMapping(value = "/mydatadao", method = RequestMethod.GET)
+    public ModelAndView mydatadao(ModelAndView mav) {
+        mav.setViewName("chapter6/mydatadao");
+        mav.addObject("msg", "this is sample comment");
+        Iterable<MyData> list = dao.getAll();
+        mav.addObject("datalist", list);
+        return mav;
+    }
 }
