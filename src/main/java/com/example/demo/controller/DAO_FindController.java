@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.annotation.PostConstruct;
 import javax.persistence.*;
 
@@ -13,7 +16,7 @@ import com.example.demo.MyDataDAOImpl;
 import com.example.demo.controller.repositories.MyDataRepository;
 
 @Controller
-public class MyDataDAOController {
+public class DAO_FindController {
     
     @Autowired
     MyDataRepository repository;
