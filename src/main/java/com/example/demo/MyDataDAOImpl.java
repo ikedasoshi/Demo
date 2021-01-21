@@ -41,11 +41,21 @@ public class MyDataDAOImpl implements MyDataDAO<MyData> {
         return (List<MyData>)entityManager.createQuery("from MyData where name = " + name).getResultList();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<MyData> find(String fstr) {
         List<MyData> list = null;
-        String qstr = "from MyData where id = :fstr";
-        Query query = entityManager.createQuery(qstr).setParameter("fstr", Long.parseLong(fstr));
+        String qstr = "from MyData where id = ?1 or name like ?2 or mail like ?3";
+        Long fid = 0L;
+        try {
+            fid = Long.parseLong(fstr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        Query query = entityManager.createQuery(qstr)
+            .setParameter(1, fid)
+            .setParameter(2, "%" + fstr + "%")
+            .setParameter(3, fstr + "@%");
         list = query.getResultList();
         return list;
     }
