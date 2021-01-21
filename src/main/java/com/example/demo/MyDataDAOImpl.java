@@ -40,4 +40,13 @@ public class MyDataDAOImpl implements MyDataDAO<MyData> {
     public List<MyData> findByName(String name) {
         return (List<MyData>)entityManager.createQuery("from MyData where name = " + name).getResultList();
     }
+
+    @Override
+    public List<MyData> find(String fstr) {
+        List<MyData> list = null;
+        String qstr = "from MyData where id = :fstr";
+        Query query = entityManager.createQuery(qstr).setParameter("fstr", Long.parseLong(fstr));
+        list = query.getResultList();
+        return list;
+    }
 }

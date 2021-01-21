@@ -31,12 +31,31 @@ public class DAO_FindController {
         dao = new MyDataDAOImpl(entityManager);
     }
 
-    @RequestMapping(value = "/mydatadao", method = RequestMethod.GET)
-    public ModelAndView mydatadao(ModelAndView mav) {
-        mav.setViewName("chapter6/mydatadao");
-        mav.addObject("msg", "this is sample comment");
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public ModelAndView find(HttpServletRequest request, ModelAndView mav) {
+        mav.setViewName("chapter6/find");
+        mav.addObject("title", "Find Page");
+        mav.addObject("msg", "this is MyData sample");
+        mav.addObject("value", "");
         Iterable<MyData> list = dao.getAll();
         mav.addObject("datalist", list);
+        return mav;
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public ModelAndView search(HttpServletRequest request, ModelAndView mav) {
+        mav.setViewName("chapter6/find");
+        String param = request.getParameter("fstr");
+        if (param == "") {
+            mav = new ModelAndView("redirect:/find");
+        } else {
+            mav.addObject("title", "Find result");
+            mav.addObject("msg", "「" + param + "」の検索結果");
+            mav.addObject("value", param);
+            List<MyData> list = dao.find(param);
+            mav.addObject("datalist", list);
+        }
+        
         return mav;
     }
 }
