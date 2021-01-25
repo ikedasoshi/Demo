@@ -22,4 +22,20 @@ public class S_CRUD_Controller {
         mav.addObject("datalist", list);
         return mav;
     }
+
+    @RequestMapping(value = "/s_create", method = RequestMethod.GET)
+    public ModelAndView mydatatest(@ModelAttribute("formModel") SimuData simudata, ModelAndView mav) {
+        mav.setViewName("simulator/s_create");
+        mav.addObject("msg", "this is sample comment");
+        Iterable<SimuData> list = repository.findAll();
+        mav.addObject("datalist", list);
+        return mav;
+    }
+
+    @RequestMapping(value = "/s_create", method = RequestMethod.POST)
+    @Transactional(readOnly = false)
+    public ModelAndView form(@ModelAttribute("formModel") SimuData simudata, ModelAndView mav) {
+        repository.saveAndFlush(simudata);
+        return new ModelAndView("redirect:/s_create");
+    }
 }
