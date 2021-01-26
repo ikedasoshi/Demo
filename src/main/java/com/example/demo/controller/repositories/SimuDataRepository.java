@@ -1,4 +1,4 @@
-package com.example.demo.controller.simulator;
+package com.example.demo.controller.repositories;
 
 import com.example.demo.controller.simulator.SimuData;
 

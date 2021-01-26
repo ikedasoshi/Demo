@@ -16,17 +16,17 @@
 <body>
     <h1>Create Data</h1>
     <table>
-        <form action="/mydatatest" method="post" th:object="${formModel}">
+        <form action="/s_create" method="post" th:object="${formModel}">
             <tr>
                 <td><label for="name">名前</label></td>
                 <td><input type="text" name="name" th:value="*{name}" /></td>
             </tr>
             <tr>
-                <td><label for="age">単発火力</label></td>
+                <td><label for="power">単発火力</label></td>
                 <td><input type="text" name="power" th:value="*{power}" /></td>
             </tr>
             <tr>
-                <td><label for="mail">連射間隔</label></td>
+                <td><label for="rate">連射間隔</label></td>
                 <td><input type="text" name="rate" th:value="*{rate}" /></td>
             </tr>
             <tr>
@@ -40,8 +40,8 @@
     <table>
         <tr><th>ID</th><th>名前</th></tr>
         <tr th:each="obj : ${datalist}">
-            <td th:text="${obj.id}"></td>
-            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.s_id}"></td>
+            <td th:text="${obj.s_name}"></td>
         </tr>
     </table>
 </body>

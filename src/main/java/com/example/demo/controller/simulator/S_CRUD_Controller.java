@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.controller.simulator.SimuDataRepository;
+import com.example.demo.controller.repositories.SimuDataRepository;
 
 @Controller
 public class S_CRUD_Controller {
@@ -24,7 +24,7 @@ public class S_CRUD_Controller {
     }
 
     @RequestMapping(value = "/s_create", method = RequestMethod.GET)
-    public ModelAndView mydatatest(@ModelAttribute("formModel") SimuData simudata, ModelAndView mav) {
+    public ModelAndView create(@ModelAttribute("formModel") SimuData simudata, ModelAndView mav) {
         mav.setViewName("simulator/s_create");
         mav.addObject("msg", "this is sample comment");
         Iterable<SimuData> list = repository.findAll();
