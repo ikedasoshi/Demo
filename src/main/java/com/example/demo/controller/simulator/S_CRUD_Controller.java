@@ -1,5 +1,7 @@
 package com.example.demo.controller.simulator;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +21,7 @@ public class S_CRUD_Controller {
         mav.setViewName("simulator/s_read");
         mav.addObject("msg", "this is sample comment");
         Iterable<SimuData> list = repository.findAll();
-        mav.addObject("datalist", list);
+        mav.addObject("data", list);
         return mav;
     }
 
@@ -37,5 +39,23 @@ public class S_CRUD_Controller {
     public ModelAndView form(@ModelAttribute("formModel") SimuData simudata, ModelAndView mav) {
         repository.saveAndFlush(simudata);
         return new ModelAndView("redirect:/s_create");
+    }
+
+    @RequestMapping(value = "/s_edit/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
+        mav.setViewName("simulator/s_edit");
+        mav.addObject("title", "edit mydata.");
+        Iterable<SimuData> list = repository.findAll();
+        mav.addObject("datalist", list);
+        Optional<SimuData> data = repository.findById((long)id);
+        mav.addObject("formModel", data.get());
+        return mav;
+    }
+
+    @RequestMapping(value = "/s_edit", method = RequestMethod.POST)
+    @Transactional(readOnly = false)
+    public ModelAndView update(@ModelAttribute SimuData simudata, ModelAndView mav) {
+        repository.saveAndFlush(simudata);
+        return new ModelAndView("redirect:/s_read");
     }
 }

@@ -10,9 +10,9 @@ public class SimuData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private long s_id;
+    private long id;
     @Column(length = 50, nullable = false)
-    private String s_name;
+    private String name;
     @Column(nullable = false)
     private Integer power;
     @Column(nullable = false)
@@ -21,17 +21,17 @@ public class SimuData {
     private String memo;
 
     public long getId() {
-        return s_id;
+        return id;
     }
-    public void setId(long s_id) {
-        this.s_id = s_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
-        return s_name;
+        return name;
     }
-    public void setName(String s_name) {
-        this.s_name = s_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getPower() {

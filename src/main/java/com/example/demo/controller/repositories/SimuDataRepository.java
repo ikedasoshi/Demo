@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SimuDataRepository extends JpaRepository<SimuData, Long> {
-    
+    public Optional<SimuData> findById(Long name);
 }

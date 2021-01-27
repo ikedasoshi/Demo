@@ -16,5 +16,14 @@
 <body>
     <h1>Show Data</h1>
     <pre th:text="${data}"></pre>
+    <table>
+        <tr><th>ID</th><th>名前</th><th>単発火力</th><th>連射間隔（発/分）</th></tr>
+        <tr th:each="obj : ${data}">
+            <td th:text="${obj.id}"></td>
+            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.power}"></td>
+            <td th:text="${obj.rate}"></td>
+        </tr>
+    </table>
 </body>
 </html>
