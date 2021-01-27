@@ -58,4 +58,22 @@ public class S_CRUD_Controller {
         repository.saveAndFlush(simudata);
         return new ModelAndView("redirect:/s_read");
     }
+
+    @RequestMapping(value = "/s_delete/{id}", method = RequestMethod.GET)
+    public ModelAndView delete(@PathVariable int id, ModelAndView mav) {
+        mav.setViewName("simulator/s_delete");
+        mav.addObject("title", "delete simudata.");
+        Iterable<SimuData> list = repository.findAll();
+        mav.addObject("datalist", list);
+        Optional<SimuData> data = repository.findById((long)id);
+        mav.addObject("formModel", data.get());
+        return mav;
+    }
+
+    @RequestMapping(value = "/s_delete", method = RequestMethod.POST)
+    @Transactional(readOnly = false)
+    public ModelAndView remove(@RequestParam long id, ModelAndView mav) {
+        repository.deleteById(id);
+        return new ModelAndView("redirect:/s_read");
+    }
 }
