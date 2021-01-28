@@ -1,6 +1,7 @@
 package com.example.demo.controller.simulator;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.*;
@@ -31,9 +32,9 @@ public class S_Simulator_Controller {
         dao = new SimuDataDAOImpl(entityManager);
     }
 
-    @RequestMapping(value = "/simulator", method = RequestMethod.GET)
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
     public ModelAndView select(HttpServletRequest request, ModelAndView mav) {
-        mav.setViewName("simulator/simulator");
+        mav.setViewName("simulator/select");
         mav.addObject("title", "Find Page");
         mav.addObject("msg", "this is MyData sample");
         mav.addObject("value", "");
@@ -42,9 +43,41 @@ public class S_Simulator_Controller {
         return mav;
     }
 
-    @RequestMapping(value = "/simulator", method = RequestMethod.POST)
+    @RequestMapping(value = "/select", method = RequestMethod.POST)
+    public ModelAndView search(HttpServletRequest request, ModelAndView mav) {
+        mav.setViewName("simulator/select");
+        String param = request.getParameter("fstr");
+        if (param == "") {
+            mav = new ModelAndView("redirect:/select");
+        } else {
+            mav.addObject("title", "Find result");
+            mav.addObject("msg", "「" + param + "」の検索結果");
+            mav.addObject("value", param);
+            List<SimuData> list = dao.find(param);
+            mav.addObject("datalist", list);
+        }
+        return mav;
+    }
+/*
+    @RequestMapping(value = "/simulator", method = RequestMethod.GET)
     public ModelAndView simulator(HttpServletRequest request, ModelAndView mav) {
-        
+        mav.setViewName("simulator/simulator");
+        mav.addObject("title", "Find Page");
+        mav.addObject("msg", "this is MyData sample");
+        mav.addObject("value", "");
+        Iterable<SimuData> list = dao.getAll();
+        mav.addObject("datalist", list);
+        return mav;
+    }
+*/
+    @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
+        mav.setViewName("simulator/counter");
+        mav.addObject("title", "edit mydata.");
+        Iterable<SimuData> list = repository.findAll();
+        mav.addObject("datalist", list);
+        Optional<SimuData> data = repository.findById((long)id);
+        mav.addObject("formModel", data.get());
         return mav;
     }
 }

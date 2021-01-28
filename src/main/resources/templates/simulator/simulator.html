@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {font-size: 18pt; font-weight: bold; color: gray;}
+        body {font-size: 13pt; color: gray; margin: 5px 25px;}
+        tr {margin: 5px;}
+        th {padding: 5px; color: white; background: darkgray;}
+        td {padding: 5px; color: black; background: #f0f0f0;}
+    </style>
+</head>
+<body>
+    <h1 th:text="${title}">Simulator Page</h1>
+    <p th:text="${msg}"></p>
+    
+    <form action="/simulator" method="POST">
+        <p>
+            <select id="select" >
+                <option th:each="obj : ${datalist}" th:text="${obj.name}" th:value="${obj.id}"></option>
+            </select>
+        </p>
+        <p><input type="submit"></p>
+    </form>
+
+    <hr/>
+    <table>
+        <tr><th>ID</th><th>名前</th><th>単発火力</th><th>連射間隔（発/分）</th></tr>
+        <tr th:each="obj : ${datalist}">
+            <td th:text="${obj.id}"></td>
+            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.power}"></td>
+            <td th:text="${obj.rate}"></td>
+        </tr>
+    </table>
+</body>
+</html>

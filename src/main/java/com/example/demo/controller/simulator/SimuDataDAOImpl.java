@@ -33,12 +33,30 @@ public class SimuDataDAOImpl implements SimuDataDAO<SimuData> {
 
     @Override
     public SimuData findById(long id) {
-        return (SimuData)entityManager.createQuery("from MyData where id = " + id).getSingleResult();
+        return (SimuData)entityManager.createQuery("from SimuData where id = " + id).getSingleResult();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<SimuData> findByName(String name) {
-        return (List<SimuData>)entityManager.createQuery("from MyData where name = " + name).getResultList();
+        return (List<SimuData>)entityManager.createQuery("from SimuData where name = " + name).getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<SimuData> find(String fstr) {
+        List<SimuData> list = null;
+        String qstr = "from SimuData where id = ?1 or name like ?2";
+        Long fid = 0L;
+        try {
+            fid = Long.parseLong(fstr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        Query query = entityManager.createQuery(qstr)
+            .setParameter(1, fid)
+            .setParameter(2, "%" + fstr + "%");
+        list = query.getResultList();
+        return list;
     }
 }
