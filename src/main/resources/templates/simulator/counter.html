@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>カウンターアプリのテスト</title>
-    <script th:inline="javascript">
+    <style>
+        h1 {font-size: 18pt; font-weight: bold; color: gray;}
+        body {font-size: 13pt; color: gray; margin: 5px 25px;}
+        pre {border: solid 3px #ddd; padding: 10px;}
+        tr {margin: 5px;}
+        th {padding: 5px; color: white; background: darkgray;}
+        td {padding: 5px; color: black; background: #f0f0f0;}
+    </style>
+    <script th:inline="javascript" th:object="${formModel}">
         let count_value = 0;
         let switch_1 = true;
-        let power = /*[[${power}]]*/;
-        let rate = /*[[${rate}]]*/ /60;
+        let power = /*[[*{power}]]*/;
+        let rate = /*[[*{rate}]]*/;
+        let secondrate = rate/60;
+
+        window.onload = function() {
+            document.getElementById('dps').innerText = "秒間" + secondrate + "発" 
+                                                       + "\n秒間火力:" + power*secondrate + "（理論値）";
+        }
 
         count_up_btn = function() {
             setTimeout(action, 5000);
@@ -19,20 +33,15 @@
                 setTimeout(
                     function() {
                         switch_1 = true;
-                    },1000/rate);
+                    },1000/secondrate);
             }
-            document.getElementById("disp_count").innerHTML = count_value;
-        }
-
-        function endtest() {
-            alert("計測終了！\n"
-                +"結果："+count_value+"連射");
-        }
+            document.getElementById("disp_count").innerText = count_value;
+        };
 
         function action() {
             switch_1 = false;
             var res = parseInt(count_value * power);
-            document.getElementById("result").innerHTML = "結果: " + res + "点";
+            document.getElementById("result").innerHTML = "計測秒間火力: " + res/5;
         };
 
     </script>
@@ -40,6 +49,15 @@
 <body>
     <h1>Counter Sample</h1>
     <p th:text="${msg}"></p>
+    
+    <table th:object="${formModel}">
+        <tr><th>名前</th><td th:text="*{name}"></td></tr>
+        <tr><th>単発火力</th><td th:text="*{power}"></td></tr>
+        <tr><th>連射間隔</th><td th:text="*{rate}"></td></tr>
+    </table>
+    <div>
+        <p id="dps">dps</p>
+    </div>
     <div id="disp_count">0</div>
     <button onclick="count_up_btn()">ここをクリック</button>
     <p id="result">ここに結果を表示</p>

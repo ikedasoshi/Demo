@@ -55,21 +55,27 @@ public class S_Simulator_Controller {
             mav.addObject("value", param);
             List<SimuData> list = dao.find(param);
             mav.addObject("datalist", list);
+            //mav = new ModelandView("redirect:/counter");
         }
         return mav;
     }
-/*
+
     @RequestMapping(value = "/simulator", method = RequestMethod.GET)
     public ModelAndView simulator(HttpServletRequest request, ModelAndView mav) {
         mav.setViewName("simulator/simulator");
         mav.addObject("title", "Find Page");
         mav.addObject("msg", "this is MyData sample");
-        mav.addObject("value", "");
+
         Iterable<SimuData> list = dao.getAll();
         mav.addObject("datalist", list);
         return mav;
     }
-*/
+
+    @RequestMapping(value = "/simulator", method = RequestMethod.POST)
+    public ModelAndView send(HttpServletRequest request, ModelAndView mav) {
+        return new ModelAndView();
+    }
+
     @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
         mav.setViewName("simulator/counter");
