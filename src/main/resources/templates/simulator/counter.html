@@ -12,15 +12,20 @@
         let power = /*[[*{power}]]*/;
         let rate = /*[[*{rate}]]*/;
         let secondrate = rate/60;
+        
+        const counter = document.getElementById("counter");
+
+        const buttoncolor = () => {
+            if(switch_1 !== true) {
+                counter.style.backgroundColor = "#7cfc00";
+            } else {
+                counter.style.backgroundColor = "#ff4500";
+            }
+        }
 
         window.onload = function() {
             document.getElementById('dps').innerText = "秒間" + secondrate + "発" 
                                                        + "\n秒間火力:" + power*secondrate + "（理論値）";
-            /*if(switch_1 !== true) {
-                document.getElementById("counter").style.backgroundColor = "#7cfc00";
-            } else {
-                document.getElementById("counter").style.backgroundColor = "#ff4500";
-            }*/
         }
 
         count_up_btn = function() {
