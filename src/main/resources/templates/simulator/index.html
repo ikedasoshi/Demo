@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BBPS4 目押し練習機</title>
     <style th:fragment="style">
         header {background: lawngreen;}
         h1 {font-size: 24pt; font-weight: bold; color: gray;}
@@ -21,11 +21,11 @@
             <p>BORDER BREAK PS4版の単射（手動連射）武器の目押し連射練習場。随時更新</p>
         </header>
     </div>
-    <p>武装選択</p>
+    <h1>武装選択</h1>
     <p th:each="obj : ${datalist}">
         <a th:href="@{'/counter/' + ${obj.id}}" th:text="${obj.name}"></a>
     </p>
-    <p>実装済武装一覧</p>
+    <p>実装済武装一覧（データは３凸時）</p>
     <table>
         <tr><th>武装名</th><th>単発火力</th><th>連射間隔（発/分）</th></tr>
         <tr th:each="obj : ${datalist}">
