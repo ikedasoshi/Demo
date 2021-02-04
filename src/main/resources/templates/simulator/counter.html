@@ -16,12 +16,16 @@
         window.onload = function() {
             document.getElementById('dps').innerText = "秒間" + secondrate + "発" 
                                                        + "\n秒間火力:" + power*secondrate + "（理論値）";
+            /*if(switch_1 !== true) {
+                document.getElementById("counter").style.backgroundColor = "#7cfc00";
+            } else {
+                document.getElementById("counter").style.backgroundColor = "#ff4500";
+            }*/
         }
 
         count_up_btn = function() {
-            setTimeout(action, 5000);
-
-            if(switch_1) {
+            setTimeout(endcount, 5000);
+            if(switch_1 == true) {
                 count_value += 1;
                 switch_1 = false;
                 setTimeout(
@@ -32,7 +36,7 @@
             document.getElementById("disp_count").innerText = count_value;
         };
 
-        function action() {
+        function endcount() {
             switch_1 = false;
             var res = parseInt(count_value * power);
             document.getElementById("result").innerHTML = "計測秒間火力: " + res/5;
@@ -43,10 +47,10 @@
 <body>
     <div th:include="simulator/index :: header"></div>
     <h1>連射測定</h1>
-    <p th:text="${msg}"></p>
+    <p>計測時間：５秒</p>
     
     <table th:object="${formModel}">
-        <tr><th>名前</th><td th:text="*{name}"></td></tr>
+        <tr><th>武装名</th><td th:text="*{name}"></td></tr>
         <tr><th>単発火力</th><td th:text="*{power}"></td></tr>
         <tr><th>連射間隔</th><td th:text="*{rate}"></td></tr>
     </table>
@@ -54,7 +58,7 @@
         <p id="dps">dps</p>
     </div>
     <div id="disp_count">0</div>
-    <button onclick="count_up_btn()">ここをクリック</button>
+    <button onclick="count_up_btn()" id="counter" style="width: 150px; height: 100px;">ここをクリック</button>
     <p id="result">ここに結果を表示</p>
 </body>
 </html>

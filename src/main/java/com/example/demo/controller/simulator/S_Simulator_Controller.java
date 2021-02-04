@@ -63,7 +63,6 @@ public class S_Simulator_Controller {
             mav.addObject("value", param);
             List<SimuData> list = dao.find(param);
             mav.addObject("datalist", list);
-            //mav = new ModelandView("redirect:/counter");
         }
         return mav;
     }
