@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style th:fragment="style">
+        header {background: lawngreen;}
+        h1 {font-size: 24pt; font-weight: bold; color: gray;}
+        body {font-size: 13pt; color: gray; margin: 5px 25px;}
+        pre {border: solid 3px #ddd; padding: 10px;}
+        tr {margin: 5px;}
+        th {padding: 5px; color: white; background: darkgray;}
+        td {padding: 5px; color: black; background: #f0f0f0;}
+    </style>
+</head>
+<body>
+    <div th:fragment="header">
+        <header>
+            <h1>BBPS4 目押し練習機</h1>
+            <p>BORDER BREAK PS4版の単射（手動連射）武器の目押し連射練習場。随時更新</p>
+        </header>
+    </div>
+    <p>武装選択</p>
+    <p th:each="obj : ${datalist}">
+        <a th:href="@{'/counter/' + ${obj.id}}" th:text="${obj.name}"></a>
+    </p>
+    <p>実装済武装一覧</p>
+    <table>
+        <tr><th>武装名</th><th>単発火力</th><th>連射間隔（発/分）</th></tr>
+        <tr th:each="obj : ${datalist}">
+            <td th:text="${obj.name}"></td>
+            <td th:text="${obj.power}"></td>
+            <td th:text="${obj.rate}"></td>
+        </tr>
+    </table>
+</body>
+</html>

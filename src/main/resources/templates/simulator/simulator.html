@@ -19,10 +19,10 @@
     <form action="/simulator" method="POST">
         <p>
             <select id="select" >
-                <option th:each="obj : ${datalist}" th:text="${obj.name}" th:value="${obj.id}"></option>
+                <option th:each="obj : ${datalist}" th:text="${obj.name}" th:href="@{'/counter/' + ${obj.id}}"></option>
             </select>
         </p>
-        <p><input type="submit"></p>
+        <!--<p><input type="submit"></p>-->
     </form>
 
     <hr/>

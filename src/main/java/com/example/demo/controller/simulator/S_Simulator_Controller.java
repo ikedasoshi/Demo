@@ -32,6 +32,14 @@ public class S_Simulator_Controller {
         dao = new SimuDataDAOImpl(entityManager);
     }
 
+    @RequestMapping("/")
+    public ModelAndView index(ModelAndView mav) {
+        mav.setViewName("simulator/index");
+        Iterable<SimuData> list = repository.findAll();
+        mav.addObject("datalist", list);
+        return mav;
+    }
+
     @RequestMapping(value = "/select", method = RequestMethod.GET)
     public ModelAndView select(HttpServletRequest request, ModelAndView mav) {
         mav.setViewName("simulator/select");
