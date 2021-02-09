@@ -13,15 +13,6 @@
         let rate = /*[[*{rate}]]*/;
         let secondrate = rate/60;
         
-        const counter = document.getElementById("counter");
-
-        const buttoncolor = () => {
-            if(switch_1 !== true) {
-                counter.style.backgroundColor = "#7cfc00";
-            } else {
-                counter.style.backgroundColor = "#ff4500";
-            }
-        }
 
         window.onload = function() {
             document.getElementById('dps').innerText = "秒間" + secondrate + "発" 
@@ -30,12 +21,15 @@
 
         count_up_btn = function() {
             setTimeout(endcount, 5000);
+            let counter = document.getElementById("counter");
             if(switch_1 == true) {
                 count_value += 1;
+                counter.style.backgroundColor = "#ff4500";
                 switch_1 = false;
                 setTimeout(
                     function() {
                         switch_1 = true;
+                        counter.style.backgroundColor = "";
                     },1000/secondrate);
             }
             document.getElementById("disp_count").innerText = count_value;
