@@ -14,7 +14,6 @@
         let power = /*[[*{power}]]*/;
         let rate = /*[[*{rate}]]*/;
         let secondrate = rate/60;
-        
 
         window.onload = function() {
             document.getElementById('dps').innerText = "秒間" + secondrate + "発" 
@@ -41,7 +40,7 @@
             };
 
             function endcount() {
-                switch_0 = false
+                switch_0 = false;
                 switch_1 = false;
                 var res = parseInt(count_valid * power);
                 document.getElementById("result").innerHTML = "あなたの平均秒間クリック数： " + count_click/5 + "<br/>"
