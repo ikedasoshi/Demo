@@ -40,30 +40,14 @@ public class S_Simulator_Controller {
         return mav;
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
-    public ModelAndView select(HttpServletRequest request, ModelAndView mav) {
-        mav.setViewName("simulator/select");
-        mav.addObject("title", "Find Page");
-        mav.addObject("msg", "this is MyData sample");
-        mav.addObject("value", "");
-        Iterable<SimuData> list = dao.getAll();
+    @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
+        mav.setViewName("simulator/counter");
+        mav.addObject("title", "edit mydata.");
+        Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);
-        return mav;
-    }
-
-    @RequestMapping(value = "/select", method = RequestMethod.POST)
-    public ModelAndView search(HttpServletRequest request, ModelAndView mav) {
-        mav.setViewName("simulator/select");
-        String param = request.getParameter("fstr");
-        if (param == "") {
-            mav = new ModelAndView("redirect:/select");
-        } else {
-            mav.addObject("title", "Find result");
-            mav.addObject("msg", "「" + param + "」の検索結果");
-            mav.addObject("value", param);
-            List<SimuData> list = dao.find(param);
-            mav.addObject("datalist", list);
-        }
+        Optional<SimuData> data = repository.findById((long)id);
+        mav.addObject("formModel", data.get());
         return mav;
     }
 
@@ -78,19 +62,5 @@ public class S_Simulator_Controller {
         return mav;
     }
 
-    @RequestMapping(value = "/simulator", method = RequestMethod.POST)
-    public ModelAndView send(HttpServletRequest request, ModelAndView mav) {
-        return new ModelAndView();
-    }
-
-    @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
-    public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
-        mav.setViewName("simulator/counter");
-        mav.addObject("title", "edit mydata.");
-        Iterable<SimuData> list = repository.findAll();
-        mav.addObject("datalist", list);
-        Optional<SimuData> data = repository.findById((long)id);
-        mav.addObject("formModel", data.get());
-        return mav;
-    }
+    
 }

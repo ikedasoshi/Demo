@@ -7,7 +7,9 @@
     <style th:include="simulator/index :: style">
     </style>
     <script th:inline="javascript" th:object="${formModel}">
-        let count_value = 0;
+        let count_click = 0;
+        let count_valid = 0;
+        let switch_0 = true;
         let switch_1 = true;
         let power = /*[[*{power}]]*/;
         let rate = /*[[*{rate}]]*/;
@@ -16,29 +18,35 @@
 
         window.onload = function() {
             document.getElementById('dps').innerText = "秒間" + secondrate + "発" 
-                                                       + "\n秒間火力:" + power*secondrate + "（理論値）";
-        }
+                                                     + "\n秒間火力：" + power*secondrate + "（理論値）";
 
-        count_up_btn = function() {
-            setTimeout(endcount, 5000);
-            let counter = document.getElementById("counter");
-            if(switch_1 == true) {
-                count_value += 1;
-                counter.style.backgroundColor = "#ff4500";
+            count_up_btn = function() {
+                setTimeout(endcount, 5000);
+                if(switch_0 == true) {
+                    count_click += 1;
+                }
+                let counter = document.getElementById("counter");
+                if(switch_1 == true) {
+                    count_valid += 1;
+                    counter.style.backgroundColor = "#ff4500";
+                    switch_1 = false;
+                    setTimeout(
+                        function() {
+                            switch_1 = true;
+                            counter.style.backgroundColor = "";
+                        },1000/secondrate);
+                }
+                document.getElementById("count_click").innerText = "あなたのクリック数： " + count_click;
+                document.getElementById("count_valid").innerText = "有効クリック数： " + count_valid;
+            };
+
+            function endcount() {
+                switch_0 = false
                 switch_1 = false;
-                setTimeout(
-                    function() {
-                        switch_1 = true;
-                        counter.style.backgroundColor = "";
-                    },1000/secondrate);
-            }
-            document.getElementById("disp_count").innerText = count_value;
-        };
-
-        function endcount() {
-            switch_1 = false;
-            var res = parseInt(count_value * power);
-            document.getElementById("result").innerHTML = "計測秒間火力: " + res/5;
+                var res = parseInt(count_valid * power);
+                document.getElementById("result").innerHTML = "あなたの平均秒間クリック数： " + count_click/5 + "<br/>"
+                                                            + "計測秒間火力： " + res/5;
+            };
         };
 
     </script>
@@ -56,7 +64,8 @@
     <div>
         <p id="dps">dps</p>
     </div>
-    <div id="disp_count">0</div>
+    <div id="count_click">あなたのクリック数： 0</div>
+    <div id="count_valid">有効クリック数： 0</div>
     <button onclick="count_up_btn()" id="counter" style="width: 150px; height: 100px;">ここをクリック</button>
     <p id="result">ここに結果を表示</p>
 </body>
