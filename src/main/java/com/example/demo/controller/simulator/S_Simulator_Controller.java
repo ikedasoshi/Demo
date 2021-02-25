@@ -40,7 +40,7 @@ public class S_Simulator_Controller {
         return mav;
     }
 
-    @RequestMapping(value = "/counter/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
         mav.setViewName("simulator/counter");
         mav.addObject("title", "edit mydata.");
