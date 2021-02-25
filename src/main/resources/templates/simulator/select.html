@@ -16,7 +16,7 @@
     <h1 th:text="${title}">Simulator Page</h1>
     <p th:text="${msg}"></p>
     <table>
-        <form action="/counter" method="POST">
+        <form th:action="@{'/counter/' + ${value}}" method="POST">
             <tr>
                 <td>FIND:</td>
                 <td><input type="text" name="fstr" size="20" th:value="${value}"/></td>

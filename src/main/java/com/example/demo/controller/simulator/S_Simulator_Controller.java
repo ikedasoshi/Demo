@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-//import org.springframework.transaction.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.controller.simulator.SimuData;
 import com.example.demo.controller.repositories.SimuDataRepository;
@@ -40,7 +40,7 @@ public class S_Simulator_Controller {
         return mav;
     }
 
-    @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/counter/{id}", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
         mav.setViewName("simulator/counter");
         mav.addObject("title", "edit mydata.");
@@ -51,29 +51,20 @@ public class S_Simulator_Controller {
         return mav;
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    @RequestMapping(value = "/selectdata", method = RequestMethod.GET)
     public ModelAndView select(HttpServletRequest request, ModelAndView mav) {
-        mav.setViewName("simulator/select");
+        mav.setViewName("simulator/selectdata");
         mav.addObject("title", "Find Page");
         mav.addObject("msg", "this is MyData sample");
-        mav.addObject("value", "");
         Iterable<SimuData> list = dao.getAll();
         mav.addObject("datalist", list);
         return mav;
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.POST)
-    public ModelAndView search(HttpServletRequest request, ModelAndView mav) {
-        mav.setViewName("simulator/select");
-        String param = request.getParameter("fstr");
-        if (param == "") {
-            mav = new ModelAndView("redirect:/select");
-        } else {
-            mav.addObject("value", param);
-            List<SimuData> list = dao.find(param);
-            mav.addObject("datalist", list);
-            mav = new ModelAndView("redirect:/counter/{param}");
-        }
-        return mav;
+    @RequestMapping(value = "/selectdata", method = RequestMethod.POST)
+    public ModelAndView search(HttpServletRequest request, ModelAndView mav, RedirectAttributes redirectAttributes, @RequestParam("fstr") long param) {
+        //mav.addObject("wid", param);
+        redirectAttributes.addAttribute("id",param);
+        return new ModelAndView("redirect:/counter/{id}");
     }
 }

@@ -16,10 +16,10 @@
     <h1 th:text="${title}">Simulator Page</h1>
     <p th:text="${msg}"></p>
     
-    <form action="/counter" method="POST">
+    <form th:action="@{'/counter/' + ${obj.id}}" method="POST">
         <p>
-            <select id="select" >
-                <option th:each="obj : ${datalist}" th:text="${obj.name}" th:value="${obj.id}"></option>
+            <select id="select" name="fstr" >
+                <option  th:each="obj : ${datalist}" th:text="${obj.name}" th:value="${obj.id}"></option>
             </select>
         </p>
         <p><input type="submit"></p>
