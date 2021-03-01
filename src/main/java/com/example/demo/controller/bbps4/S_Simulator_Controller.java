@@ -42,7 +42,7 @@ public class S_Simulator_Controller {
     @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
         mav.setViewName("bbps4/counter");
-        mav.addObject("title", "edit mydata.");
+        mav.addObject("title", "連射測定");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);
         Optional<SimuData> data = repository.findById((long)id);
