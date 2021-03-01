@@ -29,7 +29,7 @@ public class SimuDataDAO_Controller {
 
     @RequestMapping(value = "/simudatadao", method = RequestMethod.GET)
     public ModelAndView mydatadao(ModelAndView mav) {
-        mav.setViewName("simulator/simudatadao");
+        mav.setViewName("bbps4/simudatadao");
         mav.addObject("msg", "this is sample comment");
         Iterable<SimuData> list = dao.getAll();
         mav.addObject("datalist", list);

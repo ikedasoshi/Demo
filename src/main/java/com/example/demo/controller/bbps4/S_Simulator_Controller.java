@@ -34,7 +34,7 @@ public class S_Simulator_Controller {
 
     @RequestMapping("/")
     public ModelAndView index(ModelAndView mav) {
-        mav.setViewName("simulator/index");
+        mav.setViewName("bbps4/index");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);
         return mav;
@@ -42,7 +42,7 @@ public class S_Simulator_Controller {
 
     @RequestMapping(value = "/counter/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
-        mav.setViewName("simulator/counter");
+        mav.setViewName("bbps4/counter");
         mav.addObject("title", "edit mydata.");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);

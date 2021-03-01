@@ -18,7 +18,7 @@ public class S_CRUD_Controller {
 
     @RequestMapping("/s_read")
     public ModelAndView read(ModelAndView mav) {
-        mav.setViewName("simulator/s_read");
+        mav.setViewName("bbps4/s_read");
         mav.addObject("msg", "this is sample comment");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("data", list);
@@ -27,7 +27,7 @@ public class S_CRUD_Controller {
 
     @RequestMapping(value = "/s_create", method = RequestMethod.GET)
     public ModelAndView create(@ModelAttribute("formModel") SimuData simudata, ModelAndView mav) {
-        mav.setViewName("simulator/s_create");
+        mav.setViewName("bbps4/s_create");
         mav.addObject("msg", "this is sample comment");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);
@@ -43,7 +43,7 @@ public class S_CRUD_Controller {
 
     @RequestMapping(value = "/s_edit/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@ModelAttribute SimuData simudata, @PathVariable int id, ModelAndView mav) {
-        mav.setViewName("simulator/s_edit");
+        mav.setViewName("bbps4/s_edit");
         mav.addObject("title", "edit mydata.");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);
@@ -61,7 +61,7 @@ public class S_CRUD_Controller {
 
     @RequestMapping(value = "/s_delete/{id}", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable int id, ModelAndView mav) {
-        mav.setViewName("simulator/s_delete");
+        mav.setViewName("bbps4/s_delete");
         mav.addObject("title", "delete simudata.");
         Iterable<SimuData> list = repository.findAll();
         mav.addObject("datalist", list);
