@@ -1,9 +1,9 @@
-package com.example.demo.controller.simulator;
+package com.example.demo.controller.bbps4;
 
 import java.util.List;
 import javax.persistence.*;
 
-import com.example.demo.controller.simulator.SimuData;
+import com.example.demo.controller.bbps4.SimuData;
 
 import org.springframework.stereotype.Repository;
 

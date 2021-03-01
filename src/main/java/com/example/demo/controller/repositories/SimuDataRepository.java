@@ -1,6 +1,6 @@
 package com.example.demo.controller.repositories;
 
-import com.example.demo.controller.simulator.SimuData;
+import com.example.demo.controller.bbps4.SimuData;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.example.demo.controller.simulator;
+package com.example.demo.controller.bbps4;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.controller.simulator.SimuData;
+import com.example.demo.controller.bbps4.SimuData;
 import com.example.demo.controller.repositories.SimuDataRepository;
 
 @Controller
@@ -49,22 +49,5 @@ public class S_Simulator_Controller {
         Optional<SimuData> data = repository.findById((long)id);
         mav.addObject("formModel", data.get());
         return mav;
-    }
-
-    @RequestMapping(value = "/selectdata", method = RequestMethod.GET)
-    public ModelAndView select(HttpServletRequest request, ModelAndView mav) {
-        mav.setViewName("simulator/selectdata");
-        mav.addObject("title", "Find Page");
-        mav.addObject("msg", "this is MyData sample");
-        Iterable<SimuData> list = dao.getAll();
-        mav.addObject("datalist", list);
-        return mav;
-    }
-
-    @RequestMapping(value = "/selectdata", method = RequestMethod.POST)
-    public ModelAndView search(HttpServletRequest request, ModelAndView mav, RedirectAttributes redirectAttributes, @RequestParam("fstr") long param) {
-        //mav.addObject("wid", param);
-        redirectAttributes.addAttribute("id",param);
-        return new ModelAndView("redirect:/counter/{id}");
     }
 }
